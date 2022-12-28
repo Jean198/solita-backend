@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const taskSchema = mongoose.Schema(
+const tripSchema = mongoose.Schema(
   {
     departure_date: {
       type: Date,
@@ -40,6 +40,6 @@ const taskSchema = mongoose.Schema(
   }
 );
 
-const Trip = mongoose.model("Trip", taskSchema, "solita-helsinki-bikes");
+const Trip = mongoose.model("Trip", tripSchema, "trips");
 
 module.exports = Trip;
