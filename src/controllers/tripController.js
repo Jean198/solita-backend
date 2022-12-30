@@ -18,17 +18,18 @@ const getTrips = async (req, res) => {
       })
         .skip(offset)
         .limit(limit);
-      console.log(tripsCollection);
       tripsCollectionCount = await Trip.count({
         [searchType]: { $regex: search, $options:'i' },
       });
     } else{
       tripsCollection = await Trip.find().skip(offset).limit(limit);
-      console.log(tripsCollection)
       tripsCollectionCount = await Trip.count();
-      
+
 
     }
+
+    //aggregate
+
 
     const totalPages = Math.ceil(tripsCollectionCount / limit);
 
