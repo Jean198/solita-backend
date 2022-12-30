@@ -9,8 +9,9 @@ const PORT = process.env.PORT || 5000;
 mongoose.set("strictQuery", true);
 
 //middlewares
-app.use(tripRoute);
 app.use(cors());
+app.use(tripRoute);
+app.use(express.json());
 
 mongoose
   .connect(process.env.MONGODB_URI)
