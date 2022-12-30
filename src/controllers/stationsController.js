@@ -1,12 +1,11 @@
 const Station = require("../models/stationModel");
 
 const getStations = async (req, res) => {
-  console.log("got request")
+  
   try {
-    const limit = parseInt(req.query.limit) || 15;
+    const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 0;
     const search = req.query.search;
-    const searchType = req.query.searchType;
     const offset = limit * page;
 
     /*
@@ -23,12 +22,12 @@ const getStations = async (req, res) => {
 
     if (search) {
       stationsCollection = await Station.find({
-        [searchType]: { $regex: search, $options: "i" },
+        name: { $regex: search, $options: "i" },
       })
         .skip(offset)
         .limit(limit);
       stationsCollectionCount = await Station.count({
-        [searchType]: { $regex: search, $options: "i" },
+        name: { $regex: search, $options: "i" },
       });
     } else {
       stationsCollection = await Station.find().skip(offset).limit(limit);
