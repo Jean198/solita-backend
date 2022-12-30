@@ -46,6 +46,22 @@ const getTrips = async (req, res) => {
   }
 };
 
+
+const getStationOccurences=async(req,res)=>{
+  console.log(req.params.id)
+  const station_id=req.params.id;
+  try {
+      const departureCounts = await Trip.find({departure_station_id:[station_id]}).count();
+      const returnCounts = await Trip.find({return_station_id:[station_id]}).count();
+      res.status(200).json({departureCounts,returnCounts});
+    } catch (error) {
+      res.status(500).json({ msg: error.message });
+    }
+
+}
+
+
 module.exports = {
   getTrips,
+  getStationOccurences
 };
