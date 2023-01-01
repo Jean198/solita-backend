@@ -43,7 +43,6 @@ const getTrips = async (req, res) => {
 };
 
 const getStationOccurences = async (req, res) => {
-  console.log(req.params.id);
   const station_id = req.params.id;
   try {
     const departureCounts = await Trip.find({

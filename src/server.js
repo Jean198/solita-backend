@@ -11,9 +11,12 @@ mongoose.set("strictQuery", true);
 
 //middlewares
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(tripRoute);
 app.use(stationRoute)
-app.use(express.json());
+
+
 
 mongoose
   .connect(process.env.MONGODB_URI)

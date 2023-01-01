@@ -6,37 +6,28 @@ const stationSchema = mongoose.Schema({
   },
   id: {
     type: String,
-    required: true,
+    required: false,
   },
 
  name: {
     type: String,
-    required: true,
   },
 
   address: {
     type: String,
-    required: true,
   },
   city: {
     type: String,
-    required: true,
   },
   operator: {
     type: String,
-    required: true,
   },
-  capacity: {
-    type: Number,
-    required: true,
-  },
+
   x: {
     type: Number,
-    required: false,
   },
   y: {
     type: Number,
-    required: false,
   }
 });
 

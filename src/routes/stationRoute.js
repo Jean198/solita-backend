@@ -6,5 +6,6 @@ const stationsController=require('../controllers/stationsController');
 
 
 router.get("/stations", stationsController.getStations)
+router.post("/stations/add-station", stationsController.createStation)
 
 module.exports=router

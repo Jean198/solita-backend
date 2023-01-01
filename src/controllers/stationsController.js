@@ -1,7 +1,7 @@
 const Station = require("../models/stationModel");
 
 const getStations = async (req, res) => {
-  
+
   try {
     const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 0;
@@ -49,6 +49,28 @@ const getStations = async (req, res) => {
   }
 };
 
+
+
+const createStation = async (req, res) => {
+
+  try {
+    const station = await new Station({
+      id:req.body.id,
+      name: req.body.name,
+      address: req.body.name,
+      operator: req.body.name,
+
+
+    });
+    res.status(200).json(station);
+    station.save();
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+
+};
+
 module.exports = {
   getStations,
+  createStation
 };
