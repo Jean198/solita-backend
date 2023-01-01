@@ -26,6 +26,9 @@ const getTrips = async (req, res) => {
       tripsCollectionCount = await Trip.count();
     }
 
+    const popularDepartures=await Trip.aggregate().sortByCount("departure_station_name").limit(5)
+    const popularReturns=await Trip.aggregate().sortByCount("return_station_name").limit(5)
+
 
     const totalPages = Math.ceil(tripsCollectionCount / limit);
 
@@ -36,6 +39,9 @@ const getTrips = async (req, res) => {
         page: page,
         numberOfPages: totalPages,
       },
+
+      popularDepartureStations:popularDepartures,
+      popularReturnStations:popularReturns
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
