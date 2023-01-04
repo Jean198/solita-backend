@@ -30,6 +30,8 @@ const getTrips = async (req, res) => {
     const popularReturns=await Trip.aggregate().sortByCount("return_station_name").limit(5)
 
 
+
+
     const totalPages = Math.ceil(tripsCollectionCount / limit);
 
     res.status(200).send({
@@ -57,7 +59,60 @@ const getStationOccurences = async (req, res) => {
     const returnCounts = await Trip.find({
       return_station_id: [station_id],
     }).count();
-    res.status(200).json({ departureCounts, returnCounts });
+
+
+
+
+
+
+    const popularDepartureStations=await Trip.aggregate([
+      {
+        $match:{
+          return_station_id:station_id,
+
+        }
+      }
+    ]).sortByCount("departure_station_name").limit(5);
+
+
+    const popularReturnStations=await Trip.aggregate([
+      {
+        $match:{
+          departure_station_id:station_id,
+
+        }
+      }
+    ]).sortByCount("return_station_name").limit(5);
+
+
+
+   /*
+     const distanceSum = await Trip.find({
+      departure_station_id: [station_id],
+    })
+
+   const calculateSum=async()=>{
+    var add = 0;
+    for (var i = 0; i< distanceSum.length; i++)
+    {
+      add += distanceSum[i].covered_distance_m
+    }
+
+    console.log(add)
+   }
+
+    calculateSum();
+
+    */
+
+
+
+
+
+
+
+
+    res.status(200).json({ departureCounts, returnCounts, popularDepartureStations,popularReturnStations});
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
