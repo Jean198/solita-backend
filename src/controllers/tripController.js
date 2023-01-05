@@ -107,8 +107,6 @@ const getSingleStationInfo = async (req, res) => {
       return sum;
     };
 
-    //------------------------------------------------------------------------------------------------------------------
-
     //Calculate the average distances for the single station
     const averageDepartureDistance =
       (await averageDistance(stationDepartureTripsArray)) / departureCounts;
@@ -128,7 +126,34 @@ const getSingleStationInfo = async (req, res) => {
   }
 };
 
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+
+//Create new trip
+const createTrip = async (req, res) => {
+  console.log("request sent")
+  try {
+    const trip = await new Trip({
+      departure_date:req.body.departureDate,
+      return_date: req.body.returnDate,
+      departure_station_id: req.body.departureStationId,
+      departure_station_name: req.body.departureStationName,
+      return_station_id:req.body.returnStationId,
+      return_station_name: req.body.returnStationName,
+      covered_distance_m:parseFloat(req.body.distance),
+      duration_sec:parseFloat(req.body.duration)
+    });
+    console.log(trip)
+    res.status(200).json(trip);
+    trip.save();
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+
 module.exports = {
   getTrips,
   getSingleStationInfo,
+  createTrip
 };
