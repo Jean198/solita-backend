@@ -1,11 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
+const Trip = require("./models/tripModel");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const tripRoute = require("./routes/tripRoute");
 const stationRoute=require("./routes/stationRoute")
 const PORT = process.env.PORT || 5000;
+
 
 mongoose.set("strictQuery", true);
 
@@ -15,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(tripRoute);
 app.use(stationRoute)
+
 
 
 
