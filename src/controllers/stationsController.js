@@ -13,6 +13,7 @@ const getStations = async (req, res) => {
     let stationsCollectionCount;
 
     if (search) {
+      // When searching for stations
       stationsCollection = await Station.find({
         name: { $regex: search, $options: "i" },
       })
@@ -22,11 +23,12 @@ const getStations = async (req, res) => {
         name: { $regex: search, $options: "i" },
       });
     } else {
+      //When rendering all stations without searching
       stationsCollection = await Station.find().skip(offset).limit(limit);
       stationsCollectionCount = await Station.count();
     }
 
-    const allStations = await Station.find({});
+    const allStations = await Station.find({}); //Getting all stations all at once, not by page. This is used to render all stations locations on the map.
 
     const totalPages = Math.ceil(stationsCollectionCount / limit);
 
@@ -46,6 +48,7 @@ const getStations = async (req, res) => {
 
 //------------------------------------------------------------------------------------------------------------
 
+//Getting single station information
 const getSingleStationInfo = async (req, res) => {
   const station_id = req.params.id;
   try {
@@ -117,6 +120,7 @@ const getSingleStationInfo = async (req, res) => {
 
 //------------------------------------------------------------------------------------------------------------
 
+//Creating a new station
 const createStation = async (req, res) => {
   console.log("request sent");
   try {

@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
+//Station Schema
 const stationSchema = mongoose.Schema({
-    FID: {
+  FID: {
     type: String,
   },
   id: {
@@ -9,7 +10,7 @@ const stationSchema = mongoose.Schema({
     required: false,
   },
 
- name: {
+  name: {
     type: String,
   },
 
@@ -28,7 +29,7 @@ const stationSchema = mongoose.Schema({
   },
   y: {
     type: Number,
-  }
+  },
 });
 
 const Station = mongoose.model("Station", stationSchema, "stations");

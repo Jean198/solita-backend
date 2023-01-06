@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 
+//Trip schema
 const tripSchema = mongoose.Schema({
   departure_date: {
     type: Date,
-
   },
   return_date: {
     type: Date,
-
   },
 
   departure_station_id: {
     type: String,
-
   },
 
   departure_station_name: {

@@ -1,6 +1,6 @@
 const Trip = require("../models/tripModel");
 
-//Get all trips
+//Getting all trips
 const getTrips = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 15;
@@ -12,7 +12,7 @@ const getTrips = async (req, res) => {
     let tripsCollection;
     let tripsCollectionCount;
 
-    if (search) {
+    if (search) { //When searching for a specific trip
       tripsCollection = await Trip.find({
         [searchType]: { $regex: search, $options: "i" },
       })
@@ -21,15 +21,16 @@ const getTrips = async (req, res) => {
       tripsCollectionCount = await Trip.count({
         [searchType]: { $regex: search, $options: "i" },
       });
-    } else {
+    } else {//When not search, just rendering all trips by page
       tripsCollection = await Trip.find().skip(offset).limit(limit);
       tripsCollectionCount = await Trip.count();
     }
 
-    const popularDepartures = await Trip.aggregate()
+
+    const popularDepartures = await Trip.aggregate()//Popular departure stations.
       .sortByCount("departure_station_name")
       .limit(5);
-    const popularReturns = await Trip.aggregate()
+    const popularReturns = await Trip.aggregate() //Popular return stations
       .sortByCount("return_station_name")
       .limit(5);
 
