@@ -1,6 +1,7 @@
 const Station = require("../models/stationModel");
-const Trip =require("../models/tripModel")
+const Trip = require("../models/tripModel");
 
+//Get all stations
 const getStations = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 10;
