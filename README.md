@@ -1,7 +1,7 @@
 # Solita assignment 2023-Helsinki City Bikes
 
 ## 1. Prerequisites
-The application is build into two separate directories:
+The application is divided into two separate directories:
 
 - ### Backend:
 The backend is built with JavaScript, Node js and Express js framework. You need to have **Node js** and **Npm** installed on your computer.Type "**npm install** " to install all required packages and then " **npm start** " to start the application.
