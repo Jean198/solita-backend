@@ -57,7 +57,6 @@ const getTrips = async (req, res) => {
 
 //Create new trip
 const createTrip = async (req, res) => {
-  console.log("request sent");
   try {
     const trip = await new Trip({
       departure_date: req.body.departureDate,
@@ -69,7 +68,6 @@ const createTrip = async (req, res) => {
       covered_distance_m: parseFloat(req.body.distance),
       duration_sec: parseFloat(req.body.duration),
     });
-    console.log(trip);
     res.status(200).json(trip);
     trip.save();
   } catch (error) {

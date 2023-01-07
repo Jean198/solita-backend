@@ -4,7 +4,7 @@ const Trip = require("../models/tripModel");
 //Get all stations
 const getStations = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 100;
     const page = parseInt(req.query.page) || 0;
     const search = req.query.search;
     const offset = limit * page;
@@ -122,7 +122,6 @@ const getSingleStationInfo = async (req, res) => {
 
 //Creating a new station
 const createStation = async (req, res) => {
-  console.log("request sent");
   try {
     const station = await new Station({
       fid: req.body.fid,
@@ -134,7 +133,6 @@ const createStation = async (req, res) => {
       y: parseFloat(req.body.latitude),
       x: parseFloat(req.body.longitude),
     });
-    console.log(station);
     res.status(200).json(station);
     station.save();
   } catch (error) {
