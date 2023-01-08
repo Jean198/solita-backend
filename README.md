@@ -1,4 +1,4 @@
-# Solita assignment 2023-Helsinki City Bikes
+# Solita assignment
 
 ## 1. Prerequisites
 The application is divided into two separate directories:
@@ -59,11 +59,21 @@ The frontend is built with JavaScript and React library. You need to have **Node
 
 - ## Surprises
  - UI for adding journeys or bicycle stations
- - Endpoints to store new journeys data or new bicycle stations. (This option can be improved by for example imprementing backend validation, automatically assign Ids, etc...)
+ - Endpoints to store new journeys data or new bicycle stations.
+
 
  ## 4. Challenges faced
 
 - Too large datasets to deal with expecially when using free plan database services.
+
+## 5. Future improvements to consider
+
+- Using a paid database service to store all the data.
+- Not entering trips and stations Ids manually but creating them automatically.
+- Some autosuggestion when storing a station name
+- Some backend validation
+- Authentication/authorization when trying to enter a new trip/station
+- Editing/deleting trip/station information for authorized users.
 
 
 ## 5. Tools used
@@ -72,3 +82,4 @@ The frontend is built with JavaScript and React library. You need to have **Node
  - Node js
  - Express js
  - MongoDb(Mongoose)
+
