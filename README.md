@@ -76,7 +76,7 @@ The frontend is built with JavaScript and React library. You need to have **Node
 - Editing/deleting trip/station information for authorized users.
 
 
-## 5. Tools used
+## 6. Tools used
 
  - JavaScript, React, Leaflet
  - Node js
